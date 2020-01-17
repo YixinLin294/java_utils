@@ -36,7 +36,6 @@ class DataListener<T> extends AnalysisEventListener {
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
-
     }
 }
 

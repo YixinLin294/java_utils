@@ -7,6 +7,7 @@ import com.alibaba.excel.metadata.GlobalConfiguration;
 import com.alibaba.excel.metadata.property.ExcelContentProperty;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -33,7 +34,13 @@ public class LocalDateTimeConverter implements Converter<LocalDateTime> {
     @Override
     public CellData convertToExcelData(LocalDateTime localDateTime, ExcelContentProperty excelContentProperty, GlobalConfiguration globalConfiguration) throws Exception {
         double excelDate = HSSFDateUtil.getExcelDate(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
-        return new CellData(excelDate);
+        CellData cellData = new CellData();
+        cellData.setType(CellDataTypeEnum.NUMBER);
+        cellData.setNumberValue(BigDecimal.valueOf(excelDate));
+        cellData.setFormula(false);
+        cellData.setDataFormat(166);
+        cellData.setDataFormatString("yyyy/M/d h:mm:ss");
+        return cellData;
     }
 }
 

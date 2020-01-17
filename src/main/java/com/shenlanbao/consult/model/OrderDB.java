@@ -11,7 +11,7 @@ public class OrderDB {
 
     @ExcelProperty(value = "id")
     private Integer id;
-    @ExcelProperty(value = "id", converter = LocalDateTimeConverter.class)
+    @ExcelProperty(value = "created_at", converter = LocalDateTimeConverter.class)
     private LocalDateTime createdAt;
     @ExcelProperty(value = "update_at", converter = LocalDateTimeConverter.class)
     private LocalDateTime updatedAt;

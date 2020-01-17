@@ -1,5 +1,6 @@
 package com.shenlanbao.consult.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.shenlanbao.consult.common.exception.AppException;
 import com.shenlanbao.consult.common.model.ApiResult;
 import com.shenlanbao.consult.model.FamilyMemberDB;
@@ -27,6 +28,9 @@ public class uploadController {
         } catch (IOException e) {
             throw new AppException(ApiResult.STATE.PARSE_EXCEL_FAILD);
         }
+        String fileName =  System.getProperty("user.dir") + "\\" + excelfile.getName() + ".xlsx";
+        System.out.println(fileName);
+        EasyExcel.write(fileName, OrderDB.class).sheet().doWrite(orderList);
         return orderList;
     }
 
@@ -41,6 +45,9 @@ public class uploadController {
         } catch (IOException e) {
             throw new AppException(ApiResult.STATE.PARSE_EXCEL_FAILD);
         }
+        String fileName =  System.getProperty("user.dir") + "\\" + excelfile.getName() + ".xlsx";
+        System.out.println(fileName);
+        EasyExcel.write(fileName, FamilyMemberDB.class).sheet().doWrite(familyMemberDBList);
         return familyMemberDBList;
     }
 }

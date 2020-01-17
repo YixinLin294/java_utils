@@ -12,10 +12,5 @@ class UtilsApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    public void test() {
-        List<DemoData> orders = ExcelUtils.readExcelForOrder("C:\\Users\\slb\\Desktop\\java_utils\\order.xlsx");
-        System.out.println(orders);
-    }
 
 }

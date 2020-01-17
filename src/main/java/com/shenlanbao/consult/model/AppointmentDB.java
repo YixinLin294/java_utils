@@ -9,16 +9,20 @@ import java.time.LocalDateTime;
 @Data
 public class AppointmentDB {
 
+    @ExcelProperty(value = "id")
     private Integer id;
-    @ExcelProperty(converter = LocalDateTimeConverter.class)
+    @ExcelProperty(value = "create_at", converter = LocalDateTimeConverter.class)
     private LocalDateTime createAt;
-    @ExcelProperty(converter = LocalDateTimeConverter.class)
+    @ExcelProperty(value = "update_at", converter = LocalDateTimeConverter.class)
     private LocalDateTime updateAt;
-    @ExcelProperty(converter = LocalDateTimeConverter.class)
+    @ExcelProperty(value = "start_time", converter = LocalDateTimeConverter.class)
     private LocalDateTime startTime;
-    @ExcelProperty(converter = LocalDateTimeConverter.class)
+    @ExcelProperty(value = "end_time", converter = LocalDateTimeConverter.class)
     private LocalDateTime endTime;
+    @ExcelProperty(value = "title")
     private String title;
+    @ExcelProperty(value = "user_id")
     private Integer userId;
+    @ExcelProperty(value = "order_id")
     private Integer orderId;
 }

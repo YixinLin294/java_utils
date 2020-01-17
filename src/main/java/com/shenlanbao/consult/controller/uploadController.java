@@ -2,6 +2,7 @@ package com.shenlanbao.consult.controller;
 
 import com.shenlanbao.consult.common.exception.AppException;
 import com.shenlanbao.consult.common.model.ApiResult;
+import com.shenlanbao.consult.model.FamilyMemberDB;
 import com.shenlanbao.consult.model.OrderDB;
 import com.shenlanbao.consult.utils.EasyExcelUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,5 +28,19 @@ public class uploadController {
             throw new AppException(ApiResult.STATE.PARSE_EXCEL_FAILD);
         }
         return orderList;
+    }
+
+    @PostMapping("/family_member")
+    public List<FamilyMemberDB> insertFamilyMember(MultipartFile excelfile) {
+        if (excelfile == null) {
+            throw new AppException(ApiResult.STATE.UPLOAD_EXCEL_FAILD);
+        }
+        List<FamilyMemberDB> familyMemberDBList = new ArrayList<>();
+        try {
+            familyMemberDBList = EasyExcelUtils.readExcel(excelfile, new FamilyMemberDB());
+        } catch (IOException e) {
+            throw new AppException(ApiResult.STATE.PARSE_EXCEL_FAILD);
+        }
+        return familyMemberDBList;
     }
 }
